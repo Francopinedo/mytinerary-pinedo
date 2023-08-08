@@ -9,7 +9,7 @@ function App() {
       <img src="" alt="" />
      <a href="#">My Tinerary</a>
      </div>
-     <nav>
+     <nav className='header-right'>
         <a href="#">Home</a>
       <a href="#">Cities</a>
       <a href="#">Login</a>

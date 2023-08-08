@@ -1,13 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 *{
 padding: 0;
 margin: 0;
+background-color: #FFFFFF;
+color: #333333;
 }
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-  background-color: bisque;
+  background-color: #FFFFFF;
+  color: #333333;
   min-height: 91vh;
   width: 100%;
   display: flex;
@@ -25,10 +31,13 @@ margin: 0;
 .nav{
   display: flex;
   padding: 1rem;
-  background-color: aquamarine;
-  margin: 3px 3px;
+  margin: 1px 1px;
   justify-content: space-around;
 }
+.header-right {
+  margin: 10px 0px;
+}
+
 
 .main{
   background-color: aqua;
@@ -39,9 +48,8 @@ margin: 0;
 
 
 .footer{
-  background-color: aqua;
   display: flex;
   justify-content: center;
-  padding: 1vh;
+  padding: 0vh;
   margin-bottom: 0vh;
 }
