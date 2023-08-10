@@ -32,3 +32,12 @@ color: #303841;
 .btn::hover {
   background-color: text-purple-600;
 }
+
+.glide__arrow {
+  position: absolute;
+  display: block;
+  top: 50%;
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(-50%);
+}

@@ -6,7 +6,9 @@ export default function Index() {
   return (
    
     <Layout1>
-    <Main/>
+    <Main>
+     
+    </Main>
     </Layout1>
    
     
