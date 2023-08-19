@@ -14,10 +14,10 @@ export default function Header() {
           
         </div>
 
-        <div class="hidden sm:flex sm:items-center">
-        <a href="#" class="text-gray-800 text-sm font-semibold border px-2 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600 ">Home</a>
-        <a href="#" class="text-gray-800 text-sm font-semibold border px-2 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Cities</a>
-        <a href="#" class="text-gray-800 text-sm font-semibold border px-2 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Login</a>
+        <div class="hidden sm:flex sm:items-center nav">
+        <a href="#" class="ml-4 text-gray-800 text-2xl font-semibold border px-5 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600 ">Home</a>
+        <a href="" class="ml-4 text-gray-800 text-2xl font-semibold border px-5 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Cities</a>
+        <a href="#" class="ml-4 text-gray-800 text-2xl font-semibold border px-5 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Login</a>
         </div>
 
         <div class="sm:hidden cursor-pointer">

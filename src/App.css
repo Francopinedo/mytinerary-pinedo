@@ -29,6 +29,8 @@ color: #303841;
   justify-content: center;
   color: #EEEEEE;
 }
+
+
 .btn::hover {
   background-color: text-purple-600;
 }
@@ -41,3 +43,4 @@ color: #303841;
   opacity: 1;
   transform: translateY(-50%);
 }
+

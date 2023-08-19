@@ -7,7 +7,6 @@ export default function Index() {
    
     <Layout1>
     <Main>
-     
     </Main>
     </Layout1>
    

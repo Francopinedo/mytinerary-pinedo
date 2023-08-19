@@ -1,7 +1,17 @@
 import React from 'react'
+import Layout1 from '../layouts/Layout1'
 
 export default function Cities() {
   return (
-    <div>Cities</div>
+    <>
+    <Layout1>
+    
+    </Layout1>
+    </>
+    
   )
 }
+
+
+
+
