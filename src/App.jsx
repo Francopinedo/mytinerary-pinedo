@@ -5,29 +5,22 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './App.css'
-import Index from "./pages/Index";
+import Index from "./pages/index";
+import Cities from "./pages/cities";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Index></Index>,
-  },
-  {
-    path: "/",
-    element: <Index></Index>,
-  }
-]);
+  {path:'/index',element: <Index/>
+},
+{path:'/cities',element: <Cities/>
+}
+])
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+
 
 function App() {
   return (
     <>
-     <Index/>
+      <RouterProvider router={router} />
     </>
   )
 }

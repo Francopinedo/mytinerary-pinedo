@@ -44,3 +44,20 @@ color: #303841;
   transform: translateY(-50%);
 }
 
+.carousel{
+  margin-top: 11% !important;
+  width: 1360px !important;
+  height: 600px !important;
+  margin-top: 2% !important;
+}
+
+.carousel-item{
+  margin-top: 8% !important;
+  width: 1360px !important;
+  height: 400px !important;
+
+}
+
+.btn-carousel{
+  background-color: transparent !important;
+}
