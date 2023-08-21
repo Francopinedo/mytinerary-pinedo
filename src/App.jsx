@@ -5,14 +5,23 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './App.css'
-import Index from "./pages/index";
+import Layout from "./layouts/layout";
+import Main from "./components/Main";
 import Cities from "./pages/cities";
 
+
+
 const router = createBrowserRouter([
-  {path:'/index',element: <Index/>
-},
-{path:'/cities',element: <Cities/>
-}
+  {path: '/' ,element: <Layout/>,
+children: [
+{path: '/', element: <Main/>}
+]
+  },
+  {path: '/cities' ,element: <Layout/>,
+children: [
+{path: '/cities', element: <Cities/>}
+]
+  }
 ])
 
 
@@ -20,7 +29,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }
