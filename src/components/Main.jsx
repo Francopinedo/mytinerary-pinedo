@@ -2,10 +2,10 @@ import React from "react";
 import Carousel from "./Carousel";
 export default function Main() {
   return (
-    <main className="m-20">
-      <div className="flex">
+    <main className="mt-20 ">
+      <div className="sm:block md:block lg:flex xl:flex ">
 
-      <div className="m-10">
+      <div className="m-10 ">
       <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
         Find the perfect destination
       </h1>
@@ -21,12 +21,12 @@ export default function Main() {
           
       </div>
       </div>
-      <div className="">
-      <img className="rounded-full h-auto max-w-lg " src="./bsas.jpg" alt="jpn" />
+      <div className=" ">
+      <img className="rounded-full 2xl:h-4/6 h-auto max-w-full  " src="./bsas.jpg" alt="jpn" />
       </div>
       
       </div>
-      <div className="">
+      <div id="carousel-section block sm:flex " className=" ">
       <Carousel></Carousel>
       </div>
       

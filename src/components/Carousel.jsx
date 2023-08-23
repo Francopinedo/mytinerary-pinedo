@@ -6,7 +6,7 @@ export default function Carousel() {
   return (
 <>
 
-<div className="carousel ">
+<div className="carousel flex-nowrap my-60   ">
   {/* Slide */} 
 <Itemcarousel/> 
 </div>
