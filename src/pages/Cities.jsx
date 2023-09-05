@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 function Cities() {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
-  const [noResults, setNoResults] = useState(false); // Agrega el estado noResults
+  const [noResults, setNoResults] = useState(false); 
 
   useEffect(() => {
     axios
@@ -25,9 +25,9 @@ function Cities() {
     );
     setFilteredCities(filtered);
     if (filtered.length === 0) {
-      setNoResults(true); // Debes tener un estado noResults en tu componente.
+      setNoResults(true); 
     } else {
-      setNoResults(false); // Si se encontraron resultados, oculta el mensaje.
+      setNoResults(false); 
     }
   };
 
@@ -35,7 +35,7 @@ function Cities() {
     <>
       <SearchBar cities={cities} onSearch={handleSearch} />
       {noResults ? (
-        <h1>No se encontraron resultados</h1>
+        <h1>No results</h1>
       ) : (
         <div className="flex flex-wrap justify-center items-center">
           {filteredCities.map((city) => (
