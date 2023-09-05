@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.5.0",
     "better-react-carousel": "^1.1.1",
     "hover-carousel": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.4",
-    "react-router-dom": "^6.15.0"
+    "react-responsive": "^9.0.2",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.15.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

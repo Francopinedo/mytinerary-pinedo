@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "./Carousel";
+import CarouselSection from "./CarouselSection";
 export default function Main() {
   return (
     <main className="mt-20 ">
@@ -27,7 +27,7 @@ export default function Main() {
       
       </div>
       <div id="carousel-section block sm:flex " className=" ">
-      <Carousel></Carousel>
+      <CarouselSection></CarouselSection>
       </div>
       
     </main>
