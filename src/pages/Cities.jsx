@@ -1,49 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from '../components/SearchBar';
+import {useDispatch, useSelector} from 'react-redux'
+import citiesActions from '../store/actions/cities';
+import store from '../store/store';
+import citiesReducer from '../store/reducers/cities';
 
 function Cities() {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
   const [noResults, setNoResults] = useState(false); 
+  const [isLoading, setIsLoading] = useState(true);
+  let citiesInStore = useSelector(state => state.citiesReducer.cities);
+const dispatch = useDispatch();
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/cities')
-      .then((response) => {
-        setCities(response.data);
-        setFilteredCities(response.data);
-      })
-      .catch((error) => {
-        console.error('Error al obtener datos:', error);
-      });
-  }, []);
+console.log("Estado actual del store:", citiesInStore);
+
+useEffect(() => {
+  dispatch(citiesActions.get_cities())
+    .then(() => {
+      setIsLoading(false); 
+    })
+    .catch((error) => {
+      console.error("Error al obtener datos:", error);
+    });
+}, [dispatch]);
 
   const handleSearch = (searchTerm) => {
-    const filtered = cities.filter((city) =>
+    const filtered = citiesInStore.filter((city) =>
       city.name.toLowerCase().startsWith(searchTerm.toLowerCase())
     );
     setFilteredCities(filtered);
     if (filtered.length === 0) {
-      setNoResults(true); 
+      setNoResults(true);
     } else {
-      setNoResults(false); 
+      setNoResults(false);
     }
   };
 
   return (
     <>
+    
       <SearchBar cities={cities} onSearch={handleSearch} />
+     
       {noResults ? (
         <h1>No results</h1>
+        
       ) : (
         <div className="flex flex-wrap justify-center items-center">
+         
           {filteredCities.map((city) => (
+          
             <a
               key={city._id}
               href={`/city/${city._id}`}
               className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md m-12"
-            >
+            > 
               <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
                 <img src={city.img} layout="fill" alt={city.name} />
               </div>

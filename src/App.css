@@ -60,6 +60,10 @@ color: #303841;
 }
 .slide{
   min-width: 25% !important;
+ 
+}
+.carousel-image {
+  height: 20vw !important; 
 }
 .btn-c{
   margin-top: 6% !important;
@@ -72,8 +76,8 @@ color: #EEEEEE;
   margin-top: 100% !important;
   width: 1360px !important;
   height: 400px !important;
-
 }
+
 
 .btn-carousel{
   background-color: transparent !important;

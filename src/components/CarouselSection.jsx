@@ -37,10 +37,14 @@ export default function CarouselSection() {
   return (
     <div className="carousel-section ">
       <div className="carousel-controls">
-        <button className="btn-c"onClick={handlerBack} disabled={step === 0}>
+        <button className="btn-c" onClick={handlerBack} disabled={step === 0}>
           Back
         </button>
-        <button className="btn-c" onClick={handlerNext} disabled={step === cities.length / 4 - 1}>
+        <button
+          className="btn-c"
+          onClick={handlerNext}
+          disabled={step === cities.length / 4 - 1}
+        >
           Next
         </button>
       </div>
@@ -49,7 +53,13 @@ export default function CarouselSection() {
         {cities.map((city) => (
           <div key={city._id}>
             <a href={`/city/${city._id}`} className="city-card">
-              <a href={`/city/${city._id}`}><img src={city.img} alt={city.name} /></a>
+              <a href={`/city/${city._id}`}>
+                <img
+                  className="carousel-image object-fill"
+                  src={city.img}
+                  alt={city.name}
+                />
+              </a>
               <h3>{city.name}</h3>
               <p>{city.info}</p>
             </a>
