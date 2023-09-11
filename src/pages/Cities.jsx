@@ -17,12 +17,17 @@ const dispatch = useDispatch();
 console.log("Estado actual del store:", citiesInStore);
 
 useEffect(() => {
-  dispatch(citiesActions.get_cities())
-    .then(() => {
-      setIsLoading(false); 
+
+  axios
+    .get('http://localhost:3000/api/cities')
+    .then((response) => {
+      const citiesData = response.data;
+      dispatch(citiesActions.get_cities(citiesData)); 
+      setFilteredCities(citiesData); 
+      setIsLoading(false);
     })
     .catch((error) => {
-      console.error("Error al obtener datos:", error);
+      console.error('Error al obtener datos:', error);
     });
 }, [dispatch]);
 

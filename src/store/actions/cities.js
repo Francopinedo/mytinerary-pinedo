@@ -5,7 +5,6 @@ const get_cities = createAsyncThunk("cities/getCities", async () => {
   try {
     const response = await axios.get("http://localhost:3000/api/cities");
     const cities = response.data; 
-    console.log("Cities:", cities);
     
     return {
       cities: cities
@@ -20,7 +19,7 @@ const get_cities = createAsyncThunk("cities/getCities", async () => {
 
  const filter_cities_id = createAsyncThunk('filter_cities_id',async (id)=>{
    try {
-    const city = await (axios.get("http://localhost:3000/api/city/"+id))
+    const city = await (axios.get("http://localhost:3000/api/city/itinerary/"+id))
      .then((response) => response.data)
 return{
   city:city
