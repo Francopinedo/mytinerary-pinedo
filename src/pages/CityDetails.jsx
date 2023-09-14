@@ -12,6 +12,21 @@ function CityDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [itineraries, setItineraries] = useState([]);
 
+  useEffect(() => {
+
+    axios
+      .get('http://localhost:3000/api/city/itinerary')
+      .then((response) => {
+        const citiesData = response.data;
+        dispatch(citiesActions.get_cities(citiesData)); 
+        setFilteredCities(citiesData); 
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error al obtener datos:', error);
+      });
+  }, [dispatch]);
+
 
   useEffect(() => {
     dispatch(citiesActions.filter_cities_id(id))

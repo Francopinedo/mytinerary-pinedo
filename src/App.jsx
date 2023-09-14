@@ -10,8 +10,15 @@ import Layout from "./layouts/layout";
 import Main from "./components/Main";
 import Cities from "./pages/Cities";
 import CityDetails from "./pages/CityDetails";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
+import userActions from "./store/actions/user";
 
 function App() {
+  const dispatch= useDispatch()
+  React.useEffect(()=>{
+    //dispatch(userActions.authenticate())
+  },[])
   return (
     <BrowserRouter>
       <Routes>
@@ -22,6 +29,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/city/:id" element={<CityDetails />} />
+          <Route path="/sign-in" element={<Signin />} />
+          <Route path="/sign-up" element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>

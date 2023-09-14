@@ -12,7 +12,7 @@ export default function Nav() {
     <nav>
     <Anchor to='/'>Home</Anchor>
     <Anchor to='/cities'>Cities</Anchor>
-    {/* {data.map(each=> <Anchor href={each.href} contenido={each.contenido}></Anchor>)} */}
+    <Anchor to='/signup'>SingUp</Anchor>
     </nav>
         
    
