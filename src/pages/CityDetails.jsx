@@ -8,41 +8,41 @@ import axios from "axios"
 function CityDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [cityDetails, setCityDetails] = useState({});
+  const [cityDetails, setCityDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [itineraries, setItineraries] = useState([]);
-
-  useEffect(() => {
-
-    axios
-      .get('http://localhost:3000/api/city/itinerary')
-      .then((response) => {
-        const citiesData = response.data;
-        dispatch(citiesActions.get_cities(citiesData)); 
-        setFilteredCities(citiesData); 
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error al obtener datos:', error);
-      });
-  }, [dispatch]);
+const [city, setCity] = useState({});
 
 
-  useEffect(() => {
-    dispatch(citiesActions.filter_cities_id(id))
-      .then((response) => {
-        const cityData = response.payload.city;
-        console.log(cityData)
-        setCityDetails(cityData);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error data:", error);
-        setIsLoading(false);
-      });
-  }, [dispatch, id]);
+useEffect(() => {
+  // Obtener información de la ciudad y sus itinerarios
+  axios
+    .get(`http://localhost:3000/api/city/${id}`)
+    .then((response) => {
+      const cityData = response.data;
+      setCity(cityData);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error al obtener datos:', error);
+      setIsLoading(false);
+    });
+}, [id]);
   
-  
+useEffect(() => {
+    
+  dispatch(citiesActions.filter_cities_id(id))
+    .then((response) => {
+      const Data = response.payload.city;
+      console.log(Data)
+
+      setCityDetails(Data);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error data:", error);
+      setIsLoading(false);
+    });
+}, [dispatch, id]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -52,10 +52,11 @@ function CityDetails() {
     <>
       <div>
         <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 sm:text-7xl m-8">
-          {cityDetails?.name}
+          {city.name}
+          
         </h1>
         <h2 className="font-display text-5xl tracking-tight text-neutral-950 sm:text-7xl m-10">
-          {cityDetails?.info}
+          {city.info}
         </h2>
       </div>
 
@@ -63,14 +64,14 @@ function CityDetails() {
         <div>
           <img
             className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40"
-            src={"../../" + cityDetails?.img}
+            src={"../../" + city.img}
             alt="IMG"
           />
         </div>
       </div>
-      {cityDetails.itineraries && cityDetails.itineraries.length === 0 ? (
-         <h1>There are no registered itineraries in this city</h1>
-         ) : (
+      {cityDetails.length === 0 ? (
+        <h1>There are no registered itineraries in this city</h1>
+      ) : (
       <div id="FULL_TINERARY">
         <div className="m-10">
           <button
@@ -98,22 +99,19 @@ function CityDetails() {
               </div>
             </div>
           </div>
-
-          <div id="DATA" className="w-96">
+          {cityDetails.map((itinerary, index) => (
+              <div id="DATA" className="w-96" key={index}>
             <div className="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
               <div className="p-6">
                 <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                   Itinerary
-                </h5>
-              
+                </h5>        
                 <ul>
-               
-                {itineraries.map((itinerary, index) => (
-                  
-                 
                     <li key={index}>
-                      {console.log(itinerary.name)}
+                      
                       <h2>{itinerary.name}</h2>
+                      {console.log(itinerary.name)}
+                      {console.log(cityDetails[1].name)}
                       <p>{itinerary.info}</p>
                       <p>Duration: {itinerary.duration}</p>
                       <p>Price: {itinerary.price}</p>
@@ -122,11 +120,12 @@ function CityDetails() {
                       <p>User: {itinerary.nameUser}</p>
                       <img src={itinerary.imgUser} alt={itinerary.nameUser} />
                     </li>
-                  ))}
+                  
                 </ul>
               </div>
             </div>
           </div>
+          ))}
         </div>
       </div>)}
 
