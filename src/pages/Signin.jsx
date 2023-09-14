@@ -8,8 +8,8 @@ import citiesReducer from '../store/reducers/cities';
 import Signin from '../components/signin';
 
 function SignIn() {
-const emailInputRef = useRef();
-const passwordInputRef = useRef()
+//const emailInputRef = useRef();
+//const passwordInputRef = useRef()
 const handlerSignIn =() =>{
   axios.post("http://localhost:3000/api/user/login",
   {
