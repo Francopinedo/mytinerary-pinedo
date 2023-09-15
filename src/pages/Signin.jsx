@@ -8,20 +8,6 @@ import citiesReducer from '../store/reducers/cities';
 import Signin from '../components/signin';
 
 function SignIn() {
-//const emailInputRef = useRef();
-//const passwordInputRef = useRef()
-const handlerSignIn =() =>{
-  axios.post("http://localhost:3000/api/user/login",
-  {
-    email:emailInputRef.current.value,
-    password: passwordInputRef.current.value
-  })
-  .then((respone)=>{
-    console.log(response.data.token)
-    localStorage.setItem("token",response.data.token)
-    let token  = localStorage.getItem("token")
-  })
-}
 
   return (
     <>

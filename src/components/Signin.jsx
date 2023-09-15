@@ -1,7 +1,24 @@
 import React from "react";
 
 export default function SignIn() {
+  //const emailInputRef = useRef();
+//const passwordInputRef = useRef()
+const handlerSignIn =() =>{
+  axios.post("http://localhost:3000/api/user/login",
+  {
+    email:emailInputRef.current.value,
+    password: passwordInputRef.current.value
+  })
+  .then((respone)=>{
+    console.log(response.data.token)
+    localStorage.setItem("token",response.data.token)
+    let token  = localStorage.getItem("token")
+  })
+}
+
   return (
+
+    <form onSubmit={handleSubmit}>
     <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
@@ -65,5 +82,6 @@ export default function SignIn() {
         </div>
       </div>
     </div>
+    </form>
   );
 }
