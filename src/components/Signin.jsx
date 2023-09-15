@@ -80,10 +80,10 @@ import jwtdecode from "jwt-decode";
   return (
 
     <form onSubmit={handleSubmit}>
-    <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-      <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center ">
+      <div class="max-w-screen-xl m-0 sm:m-10    sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-          <div class="mt-12 flex flex-col items-center">
+          <div class="mt-12 flex flex-col items-center mt-40">
             <h1 class="text-2xl xl:text-3xl font-extrabold">Sign in</h1>
             <div class="w-full flex-1 mt-8">
               <div class="flex flex-col items-center">
@@ -131,7 +131,7 @@ import jwtdecode from "jwt-decode";
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
-                  name="email"  // Asegúrate de que el name sea "email"
+                  name="email"  
                   placeholder="Email"
                   value={email}
                   onChange={(e) => {
@@ -156,9 +156,9 @@ import jwtdecode from "jwt-decode";
             </div>
           </div>
         </div>
-        <div class="flex-1 bg-indigo-100 text-center hidden lg:flex">
-          <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat">
-            <img src="" alt="" />
+        <div className="flex-1  text-center hidden lg:flex">
+          <div className="m-12 xl:m-16 w-full h-full flex items-center justify-center bg-contain bg-center bg-repeat">
+            <img className="img-form" src="../public/cityX.png" alt="" />
           </div>
         </div>
       </div>

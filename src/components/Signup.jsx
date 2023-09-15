@@ -82,10 +82,10 @@ export default function SignUp() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+      <div class="min-h-screen  text-gray-900 flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-            <div class="mt-12 flex flex-col items-center">
+          <div class="mt-12 flex flex-col items-center mt-40">
               <h1 class="text-2xl xl:text-3xl font-extrabold">Sign Up</h1>
                   <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium  transform translate-y-1/2">
                     Sign up with Google
@@ -168,10 +168,10 @@ export default function SignUp() {
               </div>
             </div>
           </div>
-          <div class="flex-1 bg-indigo-100 text-center hidden lg:flex">
-            <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat">
-              <img src="" alt="" />
-            </div>
+          <div class="flex-1  text-center hidden lg:flex">
+          <div className="m-12 xl:m-16 w-full h-full flex items-center justify-center bg-contain bg-center bg-repeat">
+            <img className="img-form" src="../public/cityX.png" alt="" />
+          </div>
           </div>
         </div>
       </div>
