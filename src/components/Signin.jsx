@@ -3,30 +3,80 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { GoogleLogin } from '@react-oauth/google';
+import jwtdecode from "jwt-decode";
 
   export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
     const handleSubmit = (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
+   
       
-      axios
-      .post("http://localhost:3000/api/user/login", {
+      const body = {
         email: email,
         password: password,
-      })
-      .then((response) => {
-        console.log(response.data.token);
-        console.log(response);
-        localStorage.setItem("token", response.data.token);
-        let token = localStorage.getItem("token");
-      })
-      .catch((error) => {
-        console.error("Sign in failed", error.response ? error.response.data : error.message);
-      });
+      };
+      console.log("1::::"+body.email)
+      loginWithEmail(body);
     };
   
+    const loginWithEmail = async (data) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/user/login",
+          data
+        );
+        console.log("2::::"+response.data)
+        if (response && response.data) {
+          console.log("Login successful", response.data);
+          localStorage.setItem("token", response.data.token);
+          // Login
+          //Add btn Logout
+        } else {
+          console.error("Login failed: Response data is missing");
+        }
+      } catch (error) {
+        console.error(
+          "Login failed",
+          error.response ? error.response.data : error.message
+        );
+      }
+    };
+  
+    const signInWithGoogle = (credentialResponse) => {
+      const userData = jwtdecode(credentialResponse.credential);
+          
+      const body = {
+        email: userData.email,
+        password: userData.family_name,
+      };
+  
+      loginWithGoogle(body);
+    };
+  
+    const loginWithGoogle = async (data) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/user/login",
+          data
+        );
+        if (response && response.data) {
+          console.log("Login with Google successful", response.data);
+          localStorage.setItem("token", response.data.token);
+          // Login
+          //Add btn Logout
+        } else {
+          console.error("Login with Google failed: Response data is missing");
+        }
+      } catch (error) {
+        console.error(
+          "Login with Google failed",
+          error.response ? error.response.data : error.message
+        );
+      }
+    };
   return (
 
     <form onSubmit={handleSubmit}>
@@ -37,7 +87,17 @@ import axios from "axios";
             <h1 class="text-2xl xl:text-3xl font-extrabold">Sign in</h1>
             <div class="w-full flex-1 mt-8">
               <div class="flex flex-col items-center">
-                <button class="mt-5 tracking-wide font-semibold  text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+              <div>
+                    <GoogleLogin
+                    text="Sign_In"
+                      class="mt-5 tracking-wide font-semibold   w-full py-4  hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                      onSuccess={signInWithGoogle}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                    />
+                  </div>
+                {/* <button class="mt-5 tracking-wide font-semibold  text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   <div class=" p-2 rounded-full">
                     <svg class="w-4" viewBox="0 0 533.5 544.3">
                       <path
@@ -59,7 +119,7 @@ import axios from "axios";
                     </svg>
                   </div>
                   Sign in with Google
-                </button>
+                </button> */}
               </div>
               <div class="my-12 border-b text-center">
                 <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium  transform translate-y-1/2">
@@ -71,18 +131,24 @@ import axios from "axios";
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
-                 placeholder="Email"
+                  name="email"  // Asegúrate de que el name sea "email"
+                  placeholder="Email"
                   value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
+                
+                
                 />
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
+                  name="password"
                   placeholder="Password"
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <button class="mt-5 tracking-wide font-semibold  text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <button type="submit" class="mt-5 tracking-wide font-semibold bg-black text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   Sign-In
                 </button>
                 

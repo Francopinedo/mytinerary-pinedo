@@ -29,6 +29,21 @@ return{
    }
  })
 
+
+ const get_city = createAsyncThunk('get_city',async (id)=>{
+  try {
+   const city = await (axios.get("http://localhost:3000/api/city/itinerary/"+id))
+    .then((response) => response.data)
+return{
+ city:city
+}
+  } catch (error) {
+    console.log(e.message)
+  }
+})
+
+
+
 const citiesActions = {
    get_cities,filter_cities_id
 }
