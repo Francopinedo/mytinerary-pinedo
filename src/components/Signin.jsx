@@ -1,21 +1,32 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-export default function SignIn() {
-  //const emailInputRef = useRef();
-//const passwordInputRef = useRef()
-const handlerSignIn =() =>{
-  axios.post("http://localhost:3000/api/user/login",
-  {
-    email:emailInputRef.current.value,
-    password: passwordInputRef.current.value
-  })
-  .then((respone)=>{
-    console.log(response.data.token)
-    localStorage.setItem("token",response.data.token)
-    let token  = localStorage.getItem("token")
-  })
-}
-
+  export default function SignIn() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleSubmit = (e) => {
+      e.preventDefault(); 
+      
+      axios
+      .post("http://localhost:3000/api/user/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data.token);
+        console.log(response);
+        localStorage.setItem("token", response.data.token);
+        let token = localStorage.getItem("token");
+      })
+      .catch((error) => {
+        console.error("Sign in failed", error.response ? error.response.data : error.message);
+      });
+    };
+  
   return (
 
     <form onSubmit={handleSubmit}>
@@ -60,12 +71,16 @@ const handlerSignIn =() =>{
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
-                  placeholder="Email"
+                 placeholder="Email"
+                  value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
+                   value={password}
+                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button class="mt-5 tracking-wide font-semibold  text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   Sign-In
