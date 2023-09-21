@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
 import jwtdecode from "jwt-decode";
+import Header from "./Header";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -33,16 +35,16 @@ export default function SignUp() {
       );
       if (response && response.data) {
         console.log("Registration successful", response.data);
+        toast.success("Registration successful");
       } else {
         console.error("Registration failed: Response data is missing");
+        toast.error("Registration failed: Verify your data");
       }
     } catch (error) {
-      console.error(
-        "Registration failed",
-        error.response ? error.response.data : error.message
-      );
-      
-    }
+      console.error("Login failed", error.response ? error.response.data : error.message);
+      toast.error("Registration failed: Verify your data or user already " );
+    }   
+    
   };
 
   const signUpWithGoogle = (credentialResponse) => {
@@ -69,23 +71,26 @@ export default function SignUp() {
       );
       if (response && response.data) {
         console.log("Registration successful", response.data);
+        toast.success(`User registred successful!`);
       } else {
         console.error("Registration failed: Response data is missing");
+        toast.error("Registration failed: Verify your data");
       }
     } catch (error) {
-      console.error(
-        "Registration failed",
-        error.response ? error.response.data : error.message
-      );
+      console.error("Login failed", error.response ? error.response.data : error.message);
+      toast.error("Registration failed:  ",error.message);
     }
   };
 
   return (
+    <>
+   <Header isLoggedIn={false} handleLogout="" />
     <form onSubmit={handleSubmit}>
-      <div class="min-h-screen  text-gray-900 flex justify-center">
-        <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <ToastContainer />
+      <div class="  text-gray-900 flex justify-center">
+        <div class="max-w-screen-xl m-0 sm:m-10  flex justify-center flex-1">
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-          <div class="mt-12 flex flex-col items-center mt-40">
+          <div class="mt-8 flex flex-col items-center mt-40">
               <h1 class="text-2xl xl:text-3xl font-extrabold">Sign Up</h1>
                   <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium  transform translate-y-1/2">
                     Sign up with Google
@@ -176,5 +181,6 @@ export default function SignUp() {
         </div>
       </div>
     </form>
-  );
+  
+  </>)
 }

@@ -1,7 +1,10 @@
 import React from "react";
 import CarouselSection from "./CarouselSection";
+import Header from "./Header";
 export default function Main() {
   return (
+    <>
+    <Header />
     <main className="mt-20 ">
       <div className="sm:block md:block lg:flex xl:flex ">
 
@@ -31,5 +34,6 @@ export default function Main() {
       </div>
       
     </main>
+    </>
   );
 }

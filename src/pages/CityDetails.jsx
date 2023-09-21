@@ -50,6 +50,7 @@ useEffect(() => {
 
   return (
     <>
+    <Header></Header>
       <div>
         <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 sm:text-7xl m-8">
           {city.name}

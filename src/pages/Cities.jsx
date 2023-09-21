@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import citiesActions from '../store/actions/cities';
 import store from '../store/store';
 import citiesReducer from '../store/reducers/cities';
-
+import Header from '../components/Header';
 function Cities() {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
@@ -45,7 +45,7 @@ useEffect(() => {
 
   return (
     <>
-    
+    <Header></Header>
       <SearchBar cities={cities} onSearch={handleSearch} />
      
       {noResults ? (
